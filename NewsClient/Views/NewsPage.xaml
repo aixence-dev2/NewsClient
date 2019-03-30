@@ -1,0 +1,125 @@
+﻿<Page x:Class="NewsClient.Views.NewsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NewsClient.Views"
+      xmlns:vm="clr-namespace:NewsClient.ViewModels"
+      mc:Ignorable="d" 
+      Title="News">
+    <Page.DataContext>
+        <vm:NewsViewModel/>
+    </Page.DataContext>
+    <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" HorizontalAlignment="Stretch" Padding="5pt" Background="Black">
+                <TextBlock Text="News" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30pt" Foreground="WhiteSmoke"/>
+            </Border>
+            
+            <StackPanel Grid.Row="1" Visibility="{Binding Path=UkraineNewsVisibility}" Margin="5pt">
+                <TextBlock Text="Украина" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26pt" Grid.Row="0" Foreground="#050505"/>
+                <ItemsControl ItemsSource="{Binding Path=Ukraine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="auto" HorizontalAlignment="Center">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border>
+                                <Grid Margin="10pt" Width="270pt" Height="auto">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" FontSize="13pt" FontWeight="Bold" Text="{Binding Path=Title}" TextWrapping="WrapWithOverflow"/>
+                                    <Image Grid.Row="1" Source="{Binding Path=UrlToImage}" Width="270pt" Margin="0,10"/>
+                                    <TextBlock Grid.Row="2" FontSize="11pt" Text="{Binding Path=Description}" TextWrapping="WrapWithOverflow" TextAlignment="Justify"/>
+                                    <TextBlock Grid.Row="3">
+                                        <Hyperlink NavigateUri="{Binding Url}" RequestNavigate="Hyperlink_RequestNavigate">
+                                            <TextBlock Text="{Binding Path=Url}" FontSize="9pt"/>
+                                        </Hyperlink>
+                                    </TextBlock>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Visibility="{Binding Path=PolandNewsVisibility}" Margin="5pt">
+                <TextBlock Text="Польша" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26pt" Grid.Row="0" Foreground="#050505"/>
+                <ItemsControl ItemsSource="{Binding Path=Poland, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="auto" HorizontalAlignment="Center">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border>
+                                <Grid Margin="10pt" Width="270pt" Height="auto">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" FontSize="13pt" FontWeight="Bold" Text="{Binding Path=Title}" TextWrapping="WrapWithOverflow"/>
+                                    <Image Grid.Row="1" Source="{Binding Path=UrlToImage}" Width="270pt" Margin="0,10"/>
+                                    <TextBlock Grid.Row="2" FontSize="11pt" Text="{Binding Path=Description}" TextWrapping="WrapWithOverflow" TextAlignment="Justify"/>
+                                    <TextBlock Grid.Row="3">
+                                        <Hyperlink NavigateUri="{Binding Url}" RequestNavigate="Hyperlink_RequestNavigate">
+                                            <TextBlock Text="{Binding Path=Url}" FontSize="9pt"/>
+                                        </Hyperlink>
+                                    </TextBlock>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+
+            <StackPanel Grid.Row="3" Visibility="{Binding Path=EnglandNewsVisibility}" Margin="5pt">
+                <TextBlock Text="Англия" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26pt" Grid.Row="0" Foreground="#050505"/>
+                <ItemsControl ItemsSource="{Binding Path=England, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="auto" HorizontalAlignment="Center">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border>
+                                <Grid Margin="10pt" Width="270pt" Height="auto">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" FontSize="13pt" FontWeight="Bold" Text="{Binding Path=Title}" TextWrapping="WrapWithOverflow"/>
+                                    <Image Grid.Row="1" Source="{Binding Path=UrlToImage}" Width="270pt" Margin="0,10"/>
+                                    <TextBlock Grid.Row="2" FontSize="11pt" Text="{Binding Path=Description}" TextWrapping="WrapWithOverflow" TextAlignment="Justify"/>
+                                    <TextBlock Grid.Row="3">
+                                        <Hyperlink NavigateUri="{Binding Url}" RequestNavigate="Hyperlink_RequestNavigate">
+                                            <TextBlock Text="{Binding Path=Url}" FontSize="9pt"/>
+                                        </Hyperlink>
+                                    </TextBlock>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>
